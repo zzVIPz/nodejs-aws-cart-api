@@ -10,18 +10,20 @@ export class CdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    // const environment = {
+    //   DB_HOST: process.env.DB_HOST ?? '',
+    //   DB_PORT: process.env.DB_PORT ?? '',
+    //   DB_NAME: process.env.DB_NAME ?? '',
+    //   DB_USER: process.env.DB_USER ?? '',
+    //   DB_PASS: process.env.DB_PASSWORD ?? '',
+    // };
+
     const cartServiceLambda = new lambda.Function(this, 'CartServiceHandler', {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: 'build.handler',
       code: lambda.Code.fromAsset('../dist'),
       timeout: cdk.Duration.seconds(900),
-      environment: {
-        DB_HOST: process.env.DB_HOST ?? '',
-        DB_PORT: process.env.DB_PORT ?? '',
-        DB_NAME: process.env.DB_NAME ?? '',
-        DB_USER: process.env.DB_USER ?? '',
-        DB_PASS: process.env.DB_PASSWORD ?? '',
-      },
+      // environment,
     });
 
     const api = new apigateway.LambdaRestApi(this, 'CartServiceApi', {

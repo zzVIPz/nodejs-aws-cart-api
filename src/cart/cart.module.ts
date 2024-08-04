@@ -10,7 +10,7 @@ import { CartEntity, CartItemEntity } from './entities';
 @Module({
   imports: [
     OrderModule,
-    TypeOrmModule.forFeature([CartEntity, CartItemEntity]),
+    // TypeOrmModule.forFeature([CartEntity, CartItemEntity]),
   ],
   providers: [CartService],
   controllers: [CartController],

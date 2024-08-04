@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+// import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 
 import { AppController } from './app.controller';
@@ -16,19 +16,22 @@ dotenv.config();
     AuthModule,
     CartModule,
     OrderModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: Number(process.env.DB_PORT),
-      database: process.env.DB_NAME,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      entities: [CartEntity, CartItemEntity],
-      synchronize: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    }),
+    // TypeOrmModule.forRoot({
+    //   type: 'postgres',
+    //   host: process.env.DB_HOST,
+    //   port: parseInt(process.env.DB_PORT, 10),
+    //   database: process.env.DB_NAME,
+    //   username: process.env.DB_USER,
+    //   password: process.env.DB_PASSWORD,
+    //   entities: [CartEntity, CartItemEntity],
+    //   synchronize: true,
+    //   retryAttempts: 3,
+    //   retryDelay: 3000,
+    //   logging: true,
+    //   ssl: {
+    //     rejectUnauthorized: false,
+    //   },
+    // }),
   ],
   controllers: [AppController],
   providers: [],
