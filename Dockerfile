@@ -1,4 +1,4 @@
-# Setup base env & install dependensies
+# Setup base environment & install dependencies
 FROM node:20-alpine AS base
 WORKDIR /cart-api
 COPY package*.json ./
@@ -10,7 +10,7 @@ COPY . .
 RUN npm run build
 
 # Create a minimal final image with only the dependencies and compiled code needed to run the application
-FROM node:20-alpine as dist
+FROM node:20-alpine AS dist
 WORKDIR /cart-api
 COPY --from=base /cart-api/node_modules ./node_modules
 COPY --from=build /cart-api/dist ./dist
